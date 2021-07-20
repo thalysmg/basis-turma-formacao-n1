@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="20210719180400_01" author="Thalys Gadelha">
+        <createSequence sequenceName="sq_tarefa" incrementBy="1" startValue="1"/>
+
+        <createTable tableName="tarefa">
+            <column name="id" type="NUMBER(19,0)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dt_inicio" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="dt_conclusao" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_responsavel" type="NUMBER(19,0)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="tarefa" baseColumnNames="id_responsavel"
+                constraintName="fk_responsavel"
+                referencedTableName="responsavel"
+                referencedColumnNames="id"/>
+
+    </changeSet>
+</databaseChangeLog>
