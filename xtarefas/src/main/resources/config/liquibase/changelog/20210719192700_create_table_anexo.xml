@@ -17,6 +17,9 @@
             <column name="nome" type="VARCHAR">
                 <constraints nullable="false"/>
             </column>
+            <column name="uuid" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
             <column name="id_tarefa" type="NUMBER(19,0)">
                 <constraints nullable="false"/>
             </column>

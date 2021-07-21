@@ -31,6 +31,9 @@ public class Anexo {
     @Column(name = "nome", nullable = false)
     private String fileName;
 
+    @Column(name = "uuid", nullable = false)
+    private String uuid;
+
     @ManyToOne
     @JoinColumn(name = "id_tarefa", nullable = false)
     private Tarefa tarefa;
