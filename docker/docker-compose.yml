@@ -4,3 +4,7 @@ services:
     extends:
       service: postgresql
       file: postgresql.yml
+  minio-xtarefas:
+    extends:
+      service: minio
+      file: minio.yml

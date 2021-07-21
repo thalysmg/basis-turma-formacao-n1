@@ -1,6 +1,7 @@
 spring:
   application:
     name: XTarefas
+
   jpa:
     database: POSTGRESQL
     show-sql: true
@@ -18,3 +19,7 @@ spring:
     password: xtarefas
   liquibase:
     change-log: classpath:/config/liquibase/master.xml
+
+application:
+  feign:
+    url-documentos: http://localhost:8082

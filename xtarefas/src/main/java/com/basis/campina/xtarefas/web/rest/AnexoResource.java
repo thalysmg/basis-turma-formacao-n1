@@ -24,7 +24,7 @@ public class AnexoResource {
     private final AnexoService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<AnexoDTO> obterPorId(@PathVariable Long id) {
+    public ResponseEntity<AnexoDTO> obterPorId(@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(this.service.buscarPorId(id));
     }
 
@@ -44,7 +44,7 @@ public class AnexoResource {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> excluirPorId(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> excluirPorId(@PathVariable Long id) throws Exception {
         this.service.excluirPorId(id);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
     }

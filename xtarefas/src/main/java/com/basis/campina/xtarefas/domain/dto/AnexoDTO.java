@@ -14,4 +14,6 @@ public class AnexoDTO {
     private String fileName;
 
     private int idTarefa;
+
+    private String uuid;
 }
