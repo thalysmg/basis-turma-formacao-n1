@@ -3,9 +3,11 @@ package com.basis.campina.xtarefas.service;
 import com.basis.campina.xtarefas.domain.Anexo;
 import com.basis.campina.xtarefas.domain.dto.AnexoDTO;
 import com.basis.campina.xtarefas.repository.AnexoRepository;
+import com.basis.campina.xtarefas.service.event.AnexoEvent;
 import com.basis.campina.xtarefas.service.feign.ArquivoClient;
 import com.basis.campina.xtarefas.service.mapper.AnexoMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +21,8 @@ import java.util.stream.Collectors;
 public class AnexoService {
 
     private final AnexoRepository repository;
-
     private final AnexoMapper mapper;
+    private final ApplicationEventPublisher appEventPublisher;
 
     private final ArquivoClient client;
 
@@ -39,7 +41,9 @@ public class AnexoService {
     public AnexoDTO salvar(AnexoDTO anexoDto) {
         anexoDto.setUuid(UUID.randomUUID().toString());
         anexoDto.setFile(client.salvar(anexoDto));
-        return mapper.toDto(repository.saveAndFlush(mapper.toEntity(anexoDto)));
+        Anexo anexo = repository.saveAndFlush(mapper.toEntity(anexoDto));
+        appEventPublisher.publishEvent(new AnexoEvent(anexo.getId()));
+        return mapper.toDto(anexo);
     }
 
     public AnexoDTO editar(AnexoDTO anexoDto) {
