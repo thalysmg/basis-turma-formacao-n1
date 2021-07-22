@@ -34,13 +34,13 @@ public class ResponsavelService {
     public ResponsavelDTO salvar(ResponsavelDTO responsavelDTO) {
         Responsavel responsavel = mapper.toEntity(responsavelDTO);
         responsavel = this.repository.saveAndFlush(responsavel);
+        appEventPublisher.publishEvent(new ResponsavelEvent(responsavel.getId()));
         return mapper.toDto(responsavel);
     }
 
     public ResponsavelDTO editar(ResponsavelDTO responsavelDTO) {
         Responsavel responsavel = mapper.toEntity(responsavelDTO);
         responsavel = this.repository.saveAndFlush(responsavel);
-        appEventPublisher.publishEvent(new ResponsavelEvent(responsavel.getId()));
         return mapper.toDto(responsavel);
     }
 

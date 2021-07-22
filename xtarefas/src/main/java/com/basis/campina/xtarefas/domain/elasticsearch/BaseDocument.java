@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Setting(settingPath = "/config/elastic/config.json")
 public class BaseDocument implements Serializable {
 
-    protected static final String TRIM_CASE_INSENSITIVE = "trim_case_insensitve";
+    protected static final String TRIM_CASE_INSENSITIVE = "trim_case_insensitive";
     protected static final String SORT = "sort";
     protected static final String DATE_PATTERN = "dd/MM/yyyy";
 

@@ -1,6 +1,5 @@
 package com.basis.campina.xtarefas.service.elastic;
 
-import com.basis.campina.xtarefas.domain.dto.ResponsavelDTO;
 import com.basis.campina.xtarefas.domain.elasticsearch.ResponsavelDocument;
 import com.basis.campina.xtarefas.repository.ResponsavelRepository;
 import com.basis.campina.xtarefas.repository.elastic.ResponsavelSearchRepository;
@@ -10,10 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.event.TransactionalEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j

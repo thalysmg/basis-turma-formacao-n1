@@ -34,6 +34,7 @@ public class ResponsavelDocument extends BaseDocument {
     @MultiField(mainField = @Field(type = FieldType.Text, store = true,
             analyzer = TRIM_CASE_INSENSITIVE, fielddata = true),
             otherFields = {@InnerField(suffix = SORT, type = FieldType.Date, store = true,
+                    analyzer = TRIM_CASE_INSENSITIVE,
                     format = DateFormat.custom, pattern = DATE_PATTERN)})
     private String dataNascimento;
 
