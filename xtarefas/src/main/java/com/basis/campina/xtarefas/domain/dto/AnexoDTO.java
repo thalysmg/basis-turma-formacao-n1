@@ -13,7 +13,7 @@ public class AnexoDTO {
 
     private String fileName;
 
-    private int idTarefa;
+    private Long idTarefa;
 
     private String uuid;
 }

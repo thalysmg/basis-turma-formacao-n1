@@ -3,8 +3,10 @@ package com.basis.campina.xtarefas.service;
 import com.basis.campina.xtarefas.domain.Tarefa;
 import com.basis.campina.xtarefas.domain.dto.TarefaDTO;
 import com.basis.campina.xtarefas.repository.TarefaRepository;
+import com.basis.campina.xtarefas.service.event.TarefaEvent;
 import com.basis.campina.xtarefas.service.mapper.TarefaMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +19,8 @@ import java.util.stream.Collectors;
 public class TarefaService {
 
     private TarefaRepository repository;
-
     private TarefaMapper mapper;
+    private ApplicationEventPublisher appEventPublisher;
 
     public List<TarefaDTO> listarTodos() {
         return this.repository.findAll().stream()
@@ -33,6 +35,7 @@ public class TarefaService {
     public TarefaDTO salvar(TarefaDTO tarefaDto) {
         Tarefa tarefa = mapper.toEntity(tarefaDto);
         tarefa = this.repository.saveAndFlush(tarefa);
+        appEventPublisher.publishEvent(new TarefaEvent(tarefa.getId()));
         return mapper.toDto(tarefa);
     }
 
