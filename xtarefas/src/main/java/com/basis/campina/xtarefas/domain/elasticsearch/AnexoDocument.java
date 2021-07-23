@@ -1,5 +1,6 @@
 package com.basis.campina.xtarefas.domain.elasticsearch;
 
+import com.basis.campina.xtarefas.domain.Tarefa;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,11 +35,11 @@ public class AnexoDocument extends BaseDocument {
             analyzer = TRIM_CASE_INSENSITIVE, fielddata = true)})
     private String uuid;
 
-    public AnexoDocument(Long id, String file, String fileName, Long idTarefa, String uuid) {
+    public AnexoDocument(Long id, String file, String fileName, String uuid, Long idTarefa) {
         this.id = id;
         this.file = file;
         this.fileName = fileName;
-        this.idTarefa = idTarefa;
         this.uuid = uuid;
+        this.idTarefa = idTarefa;
     }
 }

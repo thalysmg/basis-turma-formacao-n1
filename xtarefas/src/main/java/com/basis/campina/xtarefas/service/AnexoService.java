@@ -2,12 +2,17 @@ package com.basis.campina.xtarefas.service;
 
 import com.basis.campina.xtarefas.domain.Anexo;
 import com.basis.campina.xtarefas.domain.dto.AnexoDTO;
+import com.basis.campina.xtarefas.domain.elasticsearch.AnexoDocument;
 import com.basis.campina.xtarefas.repository.AnexoRepository;
+import com.basis.campina.xtarefas.repository.elastic.AnexoSearchRepository;
 import com.basis.campina.xtarefas.service.event.AnexoEvent;
 import com.basis.campina.xtarefas.service.feign.ArquivoClient;
+import com.basis.campina.xtarefas.service.filter.AnexoFilter;
 import com.basis.campina.xtarefas.service.mapper.AnexoMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +28,12 @@ public class AnexoService {
     private final AnexoRepository repository;
     private final AnexoMapper mapper;
     private final ApplicationEventPublisher appEventPublisher;
-
+    private final AnexoSearchRepository searchRepository;
     private final ArquivoClient client;
+
+    public Page<AnexoDocument> pesquisarFiltro(AnexoFilter filter, Pageable page) {
+        return searchRepository.search(filter.getFilter(), page);
+    }
 
     public List<AnexoDTO> listarTodos() {
         return this.repository.findAll().stream()
