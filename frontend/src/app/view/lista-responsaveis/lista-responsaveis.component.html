@@ -1,6 +1,12 @@
 <h3>Responsáveis</h3>
 
-<p-table [value]="responsaveis.content">
+<div class="campos-filtro">
+    <input [(ngModel)]="responsavel.nome" type="text" placeholder="Digite o nome do responsável">
+    <button pButton label="Filtrar" class="ui-button-success" (click)="listarResponsaveis()"></button>
+</div>
+
+
+<p-table *ngIf="responsaveis" [value]="responsaveis.content">
     <ng-template pTemplate="header">
         <tr>
             <th>Nome</th>

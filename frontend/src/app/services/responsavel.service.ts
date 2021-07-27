@@ -13,8 +13,8 @@ export class ResponsavelService {
         private httpClient: HttpClient
     ) { }
 
-    listar(responsavel: Responsavel, datatable: Table): Observable<Page<Responsavel>> {
+    listar(query: any, datatable: Table): Observable<Page<Responsavel>> {
         const options = { params: RequestUtil.getRequestParamsTable(datatable)};
-        return this.httpClient.post<Page<Responsavel>>('http://localhost:4200/api/responsaveis/pesquisar', responsavel, options);
+        return this.httpClient.post<Page<Responsavel>>('http://localhost:4200/api/responsaveis/pesquisar', query, options);
     } 
 }

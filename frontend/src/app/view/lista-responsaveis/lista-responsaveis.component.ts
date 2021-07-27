@@ -16,17 +16,17 @@ export class ListaResponsaveisComponent implements OnInit {
   responsaveis: Page<Responsavel>;
 
   responsavel: Responsavel = new Responsavel();
-
+  
   constructor(private responsavelService: ResponsavelService) { }
 
   ngOnInit(): void {
     this.listarResponsaveis();
   }
 
-  private listarResponsaveis() {
-    this.responsavelService.listar(this.responsavel, this.dataTable).subscribe((response) => {
+  public listarResponsaveis() {
+    console.log(this.responsavel)
+    this.responsavelService.listar({ query: this.responsavel.nome }, this.dataTable).subscribe((response) => {
       this.responsaveis = response;
-    })
+    });
   }
-
 }
