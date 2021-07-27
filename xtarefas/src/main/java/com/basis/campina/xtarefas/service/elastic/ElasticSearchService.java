@@ -87,7 +87,7 @@ public class ElasticSearchService {
         log.info("Recreate index class: {}", entityClass.getName());
         elasticsearchTemplate.deleteIndex(entityClass);
         elasticsearchTemplate.createIndex(entityClass);
-        elasticsearchTemplate.putMapping(entityClass);
+//        elasticsearchTemplate.putMapping(entityClass);
     }
 
 }

@@ -1,8 +1,12 @@
 package com.basis.campina.xtarefas.web.rest;
 
 import com.basis.campina.xtarefas.domain.dto.AnexoDTO;
+import com.basis.campina.xtarefas.domain.elasticsearch.AnexoDocument;
 import com.basis.campina.xtarefas.service.AnexoService;
+import com.basis.campina.xtarefas.service.filter.AnexoFilter;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -47,5 +51,10 @@ public class AnexoResource {
     public ResponseEntity<HttpStatus> excluirPorId(@PathVariable Long id) throws Exception {
         this.service.excluirPorId(id);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/pesquisar")
+    public ResponseEntity<Page<AnexoDocument>> pesquisar(@RequestBody AnexoFilter filter, Pageable page) {
+        return ResponseEntity.ok(service.pesquisarFiltro(filter, page));
     }
 }

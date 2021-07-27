@@ -1,8 +1,12 @@
 package com.basis.campina.xtarefas.web.rest;
 
 import com.basis.campina.xtarefas.domain.dto.ResponsavelDTO;
+import com.basis.campina.xtarefas.domain.elasticsearch.ResponsavelDocument;
 import com.basis.campina.xtarefas.service.ResponsavelService;
+import com.basis.campina.xtarefas.service.filter.ResponsavelFilter;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,5 +51,10 @@ public class ResponsavelResource {
     public ResponseEntity<HttpStatus> excluirPorId(@PathVariable Long id) {
         this.service.excluirPorId(id);
         return ResponseEntity.ok(HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/pesquisar")
+    public ResponseEntity<Page<ResponsavelDocument>> pesquisar(@RequestBody ResponsavelFilter filter, Pageable page) {
+        return ResponseEntity.ok(service.pesquisarFiltro(filter, page));
     }
 }

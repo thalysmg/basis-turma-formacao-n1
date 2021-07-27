@@ -27,8 +27,8 @@ public class ResponsavelDocument extends BaseDocument {
 
     @MultiField(mainField = @Field(type = FieldType.Text, store = true,
             analyzer = TRIM_CASE_INSENSITIVE, fielddata = true),
-            otherFields = {@InnerField(suffix = SORT, type = FieldType.Text, store = true,
-                    analyzer = TRIM_CASE_INSENSITIVE, fielddata = true)})
+    otherFields = {@InnerField(suffix = SORT, type = FieldType.Text, store = true,
+            analyzer = TRIM_CASE_INSENSITIVE, fielddata = true)})
     private String email;
 
     @MultiField(mainField = @Field(type = FieldType.Text, store = true,
