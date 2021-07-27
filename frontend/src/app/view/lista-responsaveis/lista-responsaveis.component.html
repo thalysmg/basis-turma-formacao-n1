@@ -1,0 +1,18 @@
+<h3>Responsáveis</h3>
+
+<p-table [value]="responsaveis.content">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Data Nasc.</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-resp>
+        <tr>
+            <td>{{resp.nome}}</td>
+            <td>{{resp.email}}</td>
+            <td>{{resp.dataNascimento}}</td>
+        </tr>
+    </ng-template>
+</p-table>

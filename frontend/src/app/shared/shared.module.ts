@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
+import { ResponsavelService } from '../services/responsavel.service';
 import { PRIMENG_IMPORTS } from './primeng-imports';
 
 @NgModule({
     imports: [
-        PRIMENG_IMPORTS,
+        PRIMENG_IMPORTS
     ],
-    providers: [],
+    providers: [ ResponsavelService ],
     exports: [
         PRIMENG_IMPORTS,
     ]
