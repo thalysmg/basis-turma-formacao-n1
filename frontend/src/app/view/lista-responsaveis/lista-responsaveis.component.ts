@@ -24,7 +24,6 @@ export class ListaResponsaveisComponent implements OnInit {
   }
 
   public listarResponsaveis() {
-    console.log(this.responsavel)
     this.responsavelService.listar({ query: this.responsavel.nome }, this.dataTable).subscribe((response) => {
       this.responsaveis = response;
     });
